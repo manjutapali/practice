@@ -14,6 +14,8 @@ public class BinarySearchTree{
         b.PrintInorder();
         b.PrintPreorder();
         b.PrintPostOrder();
+        b.PrintHeight();
+        b.PrintTreeDiameter();
     }
 }
 
@@ -94,6 +96,7 @@ class BST{
     }
 
     public void PrintInorder(){
+        System.out.print("Inorder:");
         PrintInorder(root);
         System.out.println();
     }
@@ -108,6 +111,7 @@ class BST{
     }
 
     public void PrintPreorder(){
+        System.out.print("Pre order:");
         PrintPreorder(root);
         System.out.println();
     }
@@ -122,6 +126,7 @@ class BST{
     }
 
     public void PrintPostOrder(){
+        System.out.print("Post order:");
         PrintPostOrder(root);
         System.out.println();
     }
@@ -133,5 +138,35 @@ class BST{
         PrintPostOrder(root.left);
         PrintPostOrder(root.right);
         System.out.print(root.data + ", ");
+    }
+
+    public void PrintTreeDiameter(){
+        System.out.println("Diameter of tree = " + TreeDiameter(root));
+    }
+
+    private int TreeDiameter(Node root){
+
+        if(root == null)
+            return 0;
+
+        int lheight = getHeight(root.left);
+        int rheight = getHeight(root.right);
+
+        int ldiameter = TreeDiameter(root.left);
+        int rdiameter = TreeDiameter(root.right);
+
+        return Math.max(lheight + rheight + 1, Math.max(ldiameter, rdiameter));
+    }
+
+    public void PrintHeight(){
+        System.out.println("Height of tree = " + getHeight(root));
+    }
+
+    private int getHeight(Node root){
+
+        if(root == null)
+            return 0;
+
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 }
