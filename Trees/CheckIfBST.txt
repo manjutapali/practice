@@ -1,0 +1,45 @@
+approach 1:
+1. check inorder traversal of tree is sorted
+    while traversing keep track of previous node value, if prev value greater than curr return false
+    takes o(n)
+
+    //code
+
+    public boolean checkIfBST(Node root, Node prev)
+    {
+        if(root != null)
+        {
+            if(!checkIfBST(root.left))
+                return false;
+
+            if(prev != null && root.data <= curr.data)
+                return false;
+
+            prev = root;
+
+            retrun checkIfBST(root.right);
+        }
+
+        return true;
+    }
+
+approach 2:
+    check if node value is not lesser than the current_min or maximum than the current_max
+    current_min or current_max values are defined based on tree node values, if traversal is
+    at left side the max value is root value, similarly for right side min value is root
+
+    //code
+
+    public boolean checkIfBST(Node root, int min, int max)
+    {
+
+        if(root == null)
+            return true;
+
+        if(root.data > max || root.data < min)
+            return false;
+
+        return checkIfBST(root.left) && checkIfBST(root.right);
+    }
+
+    checkIFBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
