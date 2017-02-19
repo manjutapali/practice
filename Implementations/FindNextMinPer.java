@@ -15,22 +15,24 @@
 */
 import java.util.Scanner;
 
-public class FindNextMinNum
+public class FindNextMinPer
 {
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
+        //int n = in.nextInt();
 
-        String num = Integer.toString(n);
+        String num = in.next();
 
         System.out.println("Next greater Number");
         System.out.println(getNextGrNum(num));
 
     }
 
-    static int getNextGrNum(String num)
+    static String getNextGrNum(String num)
     {
+        if(num.length() == 1 || num == null)
+            return num;
         char n[] = num.toCharArray();
         int len = num.length();
         char last = n[len-1];
@@ -48,7 +50,7 @@ public class FindNextMinNum
         if(i == -1){
 
             System.out.println("Cannot be found");
-            return Integer.parseInt(num);
+            return num;
         }
         char c = n[len-1];
         n[len-1] = n[i];
@@ -69,6 +71,6 @@ public class FindNextMinNum
 
         }
 
-        return Integer.parseInt(new String(n));
+        return new String(n);
     }
 }
