@@ -9,15 +9,11 @@ approach 1:
     {
         if(root != null)
         {
-            if(!checkIfBST(root.left))
+            if(!checkIfBST(root.left, null))
                 return false;
-
             if(prev != null && root.data <= curr.data)
                 return false;
-
-            prev = root;
-
-            retrun checkIfBST(root.right);
+            retrun checkIfBST(root.right, root);
         }
 
         return true;
