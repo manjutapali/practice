@@ -16,6 +16,7 @@ public class BinarySearchTree{
         b.PrintPostOrder();
         b.PrintHeight();
         b.PrintTreeDiameter();
+        b.leftViewOftree();
     }
 }
 
@@ -36,19 +37,21 @@ class BST{
 
     private Node root = null;
 
-    public void insert(int ele){
+    public void insert(int ele)
+    {
         root = insert(root, ele);
     }
 
-    private Node insert(Node root, int ele){
-
-        if(root == null){
-          Node p = new Node(ele);
+    private Node insert(Node root, int ele)
+    {
+        if(root == null)
+        {
+            Node p = new Node(ele);
             root = p;
             return root;
         }
-        else{
-
+        else
+        {
             if(ele > root.data)
                 root.right = insert(root.right, ele);
             else if(ele < root.data)
@@ -59,12 +62,13 @@ class BST{
     }
 
     // After deleting Node in tree, need to find inorder successor or predecessor if both left and right node exists
-    public void delete(int ele){
+    public void delete(int ele)
+    {
         root = delete(root, ele);
     }
 
-    private Node delete(Node root, int ele){
-
+    private Node delete(Node root, int ele)
+    {
         if(root == null)
           return root;
 
@@ -88,35 +92,38 @@ class BST{
         return root;
     }
 
-    private int getInorderSucc(Node root){
+    private int getInorderSucc(Node root)
+    {
         if(root.left == null)
-          return root.data;
-
+            return root.data;
         return getInorderSucc(root.left);
     }
 
-    public void PrintInorder(){
+    public void PrintInorder()
+    {
         System.out.print("Inorder:");
         PrintInorder(root);
         System.out.println();
     }
 
-    private void PrintInorder(Node root){
+    private void PrintInorder(Node root)
+    {
         if(root == null)
             return;
         PrintInorder(root.left);
         System.out.print(root.data + ", ");
         PrintInorder(root.right);
-
     }
 
-    public void PrintPreorder(){
+    public void PrintPreorder()
+    {
         System.out.print("Pre order:");
         PrintPreorder(root);
         System.out.println();
     }
 
-    private void PrintPreorder(Node root){
+    private void PrintPreorder(Node root)
+    {
         if(root == null)
             return;
 
@@ -125,13 +132,15 @@ class BST{
         PrintPreorder(root.right);
     }
 
-    public void PrintPostOrder(){
+    public void PrintPostOrder()
+    {
         System.out.print("Post order:");
         PrintPostOrder(root);
         System.out.println();
     }
 
-    private void PrintPostOrder(Node root){
+    private void PrintPostOrder(Node root)
+    {
         if(root == null)
             return;
 
@@ -144,7 +153,8 @@ class BST{
         System.out.println("Diameter of tree = " + TreeDiameter(root));
     }
 
-    private int TreeDiameter(Node root){
+    private int TreeDiameter(Node root)
+    {
 
         if(root == null)
             return 0;
@@ -158,15 +168,39 @@ class BST{
         return Math.max(lheight + rheight + 1, Math.max(ldiameter, rdiameter));
     }
 
-    public void PrintHeight(){
+    public void PrintHeight()
+    {
         System.out.println("Height of tree = " + getHeight(root));
     }
 
-    private int getHeight(Node root){
-
+    private int getHeight(Node root)
+    {
         if(root == null)
             return 0;
 
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
+
+    public void leftViewOftree()
+    {
+        System.out.println("Left view of tree");
+        leftViewOftree(root, 1);
+    }
+    static int max_lvl = 0;
+    private void leftViewOftree(Node root, int level)
+    {
+        if(root == null)
+        {
+            return;
+        }
+
+        if(max_lvl < level)
+        {
+            System.out.println(root.data);
+            max_lvl = level;
+        }
+
+        leftViewOftree(root.left, level+1);
+        leftViewOftree(root.right, level+1);
     }
 }
