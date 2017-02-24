@@ -1,3 +1,4 @@
+import java.util.*;
 public class BinarySearchTree{
 
     public static void main(String[] args) {
@@ -17,6 +18,7 @@ public class BinarySearchTree{
         b.PrintHeight();
         b.PrintTreeDiameter();
         b.leftViewOftree();
+        b.PrintPaths();
     }
 }
 
@@ -203,4 +205,32 @@ class BST{
         leftViewOftree(root.left, level+1);
         leftViewOftree(root.right, level+1);
     }
+
+    public void PrintPaths()
+    {
+        System.out.println("root to leaf paths");
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        PrintPaths(root, path);
+    }
+
+    private void PrintPaths(Node root, ArrayList<Integer> path)
+    {
+        if(root == null)
+        {
+            return null;
+        }
+
+        path.add(root.data);
+        if(node.left == null  && node.right == null)
+        {
+            System.out.println(path);
+            path.clear();
+        }
+        else
+        {
+            PrintPaths(root.left, path);
+            PrintPaths(root.right, path);
+        }
+    }
+
 }
