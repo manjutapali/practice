@@ -209,27 +209,35 @@ class BST{
     public void PrintPaths()
     {
         System.out.println("root to leaf paths");
-        ArrayList<Integer> path = new ArrayList<Integer>();
-        PrintPaths(root, path);
+        int path[] = new int[20];
+        PrintPaths(root, path, 0);
     }
 
-    private void PrintPaths(Node root, ArrayList<Integer> path)
+    private void PrintPaths(Node root,int path[], int pathLen)
     {
         if(root == null)
         {
-            return null;
+            return;
         }
 
-        path.add(root.data);
-        if(node.left == null  && node.right == null)
+        path[pathLen] = root.data;
+        pathLen++;
+        if(root.left == null  && root.right == null)
         {
-            System.out.println(path);
-            path.clear();
+            for(int i = 0; i < 20; i++)
+            {
+                if(path[i] != 0)
+                {
+                    System.out.print(path[i] + ", ");
+                }
+            }
+            System.out.println();
+
         }
         else
         {
-            PrintPaths(root.left, path);
-            PrintPaths(root.right, path);
+            PrintPaths(root.left, path, pathLen);
+            PrintPaths(root.right, path, pathLen);
         }
     }
 
