@@ -19,6 +19,7 @@ public class BinarySearchTree{
         b.PrintTreeDiameter();
         b.leftViewOftree();
         b.PrintPaths();
+        b.kthSmallElement(3);
     }
 }
 
@@ -238,6 +239,28 @@ class BST{
         {
             PrintPaths(root.left, path, pathLen);
             PrintPaths(root.right, path, pathLen);
+        }
+    }
+
+    public void kthSmallElement(int k)
+    {
+        System.out.println(k + "th small element is:");
+        printKthSmallElement(root,k);
+    }
+
+    private int curr = 0;
+    private void printKthSmallElement(Node root,int k)
+    {
+        if(root != null)
+        {
+
+            printKthSmallElement(root.left, k);
+            if(curr <= k)
+            {   curr++;
+                if(curr == k)
+                System.out.println(root.data + " ");
+            }
+            printKthSmallElement(root.right, k);
         }
     }
 
