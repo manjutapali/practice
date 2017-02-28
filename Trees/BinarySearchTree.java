@@ -258,7 +258,7 @@ class BST{
             if(curr <= k)
             {   curr++;
                 if(curr == k)
-                System.out.println(root.data + " ");
+                System.out.println(root.data + " " );
             }
             printKthSmallElement(root.right, k);
         }
