@@ -25,10 +25,15 @@ public class MaxHeap
 
         int max = h.getMax();
         System.out.println("Max key = " + max);
-
         h.DisplayHeap();
 
-        //TODO - MaxKeyExtcraction() - deletes the max key;
+        max = h.extractMax();
+        System.out.println("Max key del = " + max);
+        h.Display();
+
+        max = h.extractMax();
+        System.out.println("Max key del = " + max);
+        h.Display();
     }
 }
 
@@ -37,6 +42,8 @@ class Heap
     private int HEAP_SIZE;
     private int heap[];
     private int curr = 0;
+    private int REAR;
+
     public Heap(int size)
     {
         this.HEAP_SIZE = size;
@@ -79,16 +86,17 @@ class Heap
         }
 
         heap[++curr] = ele;
-        MaxHeapify(curr);
+        REAR = curr;
+        BubbleUp(curr);
     }
 
-    private void MaxHeapify(int curr)
+    private void BubbleUp(int curr)
     {
         // check if parent lesser than child, if it is swap the parent with child;
         // Bubble up operation;
-        
+
         int i = curr;
-        while(i > 0)
+        while(i > 1)
         {
             int par = getParent(i);
 
@@ -110,6 +118,66 @@ class Heap
     public void DisplayHeap()
     {
         System.out.println(Arrays.toString(heap));
+    }
+
+    public int extractMax()
+    {
+        int max = heap[1];
+        heap[1] = heap[REAR--];
+        MaxHeapify(1);
+
+        return max;
+    }
+
+    private void MaxHeapify(int curr)
+    {
+        if(!isLeaf(curr))
+        {
+            
+            int par = curr;
+            int left = getLeftChild(curr);
+            int right = getRightChild(curr);
+            if(heap[par] < heap[left]  || heap[par] < heap[right])
+            {
+                if(heap[left] > heap[right])
+                {
+                    swap(curr, left);
+                    MaxHeapify(left);
+                }
+                else
+                {
+                    swap(curr, right);
+                    MaxHeapify(right);
+                }
+            }
+        }
+    }
+
+    private boolean isLeaf(int curr)
+    {
+        if(curr >= (HEAP_SIZE/2) && curr <= HEAP_SIZE)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void swap(int pos1, int pos2)
+    {
+        int temp = heap[pos1];
+        heap[pos1] = heap[pos2];
+        heap[pos2] = temp;
+    }
+
+    public void Display()
+    {
+        System.out.print("[");
+        for(int i = 1; i <= REAR; i++)
+        {
+            System.out.print(heap[i]+", ");
+        }
+        System.out.println("]");
     }
 
 }
