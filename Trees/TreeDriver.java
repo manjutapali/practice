@@ -16,5 +16,16 @@ public class TreeDriver
 
         System.out.println("Tree contents : ");
         bst.print();
+
+        boolean status = bst.delete(64);
+        //System.out.println(status);
+
+        System.out.println("Tree contents : ");
+        bst.print();
+
+        //bst.printSmallest();
+        //bst.printSmallest(3);
+
+        System.out.println("Height of tree : " + bst.getHeight());
     }
 }

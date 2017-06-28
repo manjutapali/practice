@@ -1,4 +1,4 @@
-`class BSTree
+class BSTree
 {
     private int numberOfNodes;
     private int height;
@@ -51,20 +51,36 @@
         }
     }
 
+    //Height of the tree
+    public int getHeight()
+    {
+        return getHeight(root);
+    }
+
+    private int getHeight(TreeNode root)
+    {
+        if(root == null)
+            return 0;
+
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;    
+    }
+
     // After deleting a node in tree, need to find inorder successor or predecessor;
     public boolean delete(int data)
     {
         root = delete(root, data);
+
+        return (root != null);
     }
 
-    private TreeNode delete(Node root, int data)
+    private TreeNode delete(TreeNode root, int data)
     {
         if(root == null)
         {
             return root;
         }
 
-        if(data < roo.data)
+        if(data < root.data)
         {
             root.left = delete(root.left, data);
         }
@@ -95,7 +111,48 @@
         if(root.left == null)
             return root.data;
 
-        return getInorderSucc(root.left);     
+        return getInorderSucc(root.left);
     }
+
+    public void printSmallest()
+    {
+        printSmallest(root);
+    }
+
+    private void printSmallest(TreeNode root)
+    {
+          if(root.left == null)
+          {
+              System.out.println("Smallest element is : " + root.data);
+              return;
+          }
+
+          printSmallest(root.left);
+    }
+
+    // Getting the kth smallest element of the tree
+    public void printSmallest(int k)
+    {
+        printSmallest(root, k);
+    }
+
+    private int curr = 0;
+    public void printSmallest(TreeNode root, int k)
+    {
+        if(root != null)
+        {
+            printSmallest(root.left, k);
+
+            if(curr <= k)
+            {
+                curr++;
+                if(curr == k)
+                  System.out.println(k + "th smallest element is: " + root.data);
+            }
+
+            printSmallest(root.right, k);
+        }
+
+    }
+
 }
-`
