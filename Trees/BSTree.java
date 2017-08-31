@@ -1,8 +1,8 @@
 class BSTree
 {
-    private int numberOfNodes;
-    private int height;
-    private TreeNode root = null;
+    protected int numberOfNodes;
+    protected int height;
+    protected TreeNode root = null;
 
     public void insert(int data)
     {
@@ -62,7 +62,7 @@ class BSTree
         if(root == null)
             return 0;
 
-        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;    
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
     // After deleting a node in tree, need to find inorder successor or predecessor;
