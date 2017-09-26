@@ -1,117 +1,61 @@
-class Node
+class LinkedList
 {
-    int data;
-    Node next;
+    protected Node head = null;
 
-    public Node(int ele)
+    public void add(int data)
     {
-        data = ele;
-        next = null;
-    }
-}
-
-class List{
-
-    private Node head = null;
-
-    public void insert(int ele)
-    {
-      head = insert(ele, head);
+        head = add(head, data);
     }
 
-    private Node insert(int ele, Node head)
+    private Node add(Node head, int data)
     {
-        Node p = new Node(ele);
         if(head == null)
         {
-          head = p;
-          return head;
+            return new Node(data);
         }
-
-        Node runnr = head;
-        while(runnr.next != null)
+        else
         {
-          runnr = runnr.next;
+            head.next = add(head.next, data);
+            return head;
         }
-        runnr.next = p;
-
-        return head;
     }
 
     public void display()
     {
-        display(head);
+        StringBuffer contents = new StringBuffer("[");
+        display(head, contents);
+        System.out.println(contents + "]");
     }
 
-    private void display(Node head)
+    private Node display(Node head, StringBuffer contents)
     {
-        Node runnr = head;
+        if(head == null)
+          return head;
 
-        while(runnr != null)
-        {
-            System.out.println(runnr.data);
-            runnr = runnr.next;
-        }
+         contents.append((head.data + ", "));
+        return display(head.next, contents);
     }
 
     public void reverse()
     {
-        System.out.println("Reversing linked list...");
-        head = reverseRec(head, null);
+        head = reverse(head, null);
     }
 
-    private Node reverse(Node head)
+    private Node reverse(Node curr, Node prev)
     {
-        Node prev = null;
-        Node next = null;
-        Node curr = head;
-
-        while(curr != null)
-        {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-
-        return prev;
-    }
-
-    private Node reverseRec(Node curr, Node prev)
-    {
-        if(curr == null)
-            return curr;
-
         if(curr.next == null)
         {
             head = curr;
             curr.next = prev;
+
             return null;
         }
 
         Node next = curr.next;
         curr.next = prev;
 
-        reverseRec(next, curr);
+        reverse(next, curr);
+
         return head;
-    }
-
-}
-
-public class LinkedList{
-
-    public static void main(String[] args)
-    {
-        List l = new List();
-
-        l.insert(10);
-        l.insert(20);
-        l.insert(40);
-        l.insert(50);
-        l.insert(60);
-        l.insert(70);
-        l.display();
-        l.reverse();
-        l.display();
     }
 }
