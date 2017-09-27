@@ -29,7 +29,7 @@ public class StringCompression {
 				continue;
 			}
 			else {
-				final_str += c1 + "" + count;
+				final_str += c1 + "" + count; //String cancat operation is o(n2). use StrigBuffer;
 				c1 = str.charAt(i);
 				count = 1; 
 			}
