@@ -11,7 +11,19 @@ public class Knapsack
 		int wt[] = {10, 20, 30};
 		int val[] = {60, 100, 120};
 
-		System.out.println(DynamicKS(wt, val, 50));
+		// System.out.println(DynamicKS(wt, val, 50));
+		System.out.println(RecurKS(wt, val, 50, 3));
+	}
+
+	public static int RecurKS(int wt[], int val[], int maxWght, int n)
+	{
+		if(n == 0 || maxWght == 0)
+			return 0;
+
+		if(wt[n - 1] > maxWght)
+			return RecurKS(wt, val, maxWght, n - 1);
+		else
+			return Math.max(val[n - 1] + RecurKS(wt, val, maxWght - wt[n - 1], n - 1), RecurKS(wt, val, maxWght, n - 1));
 	}
 
 	public static int DynamicKS(int wt[], int val[], int maxWght)
