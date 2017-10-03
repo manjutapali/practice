@@ -32,5 +32,9 @@ public class TreeDriver
         //Printing all the root to leaf paths
         System.out.println("Root to leaf paths are:" );
         bst.PrintRootToLeafPaths();
+
+       boolean isCousin =  bst.isCousin(13, 8);
+
+       System.out.println(isCousin ? "YES!!, They are cousins" : "No:(, not cousins");
     }
 }
