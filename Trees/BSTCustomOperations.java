@@ -32,7 +32,6 @@ class BSTCustomOperation extends BSTree
     {
         Content c1 = new Content();
         Content c2 = new Content();
-
         boolean found1 = SearchNode(c1, root, null, val1, c1.level);
         boolean found2 = SearchNode(c2, root, null, val2, c2.level);
         //System.out.println(found1 + "   " + c1.level + "  " + c1.parent.data);
@@ -59,6 +58,29 @@ class BSTCustomOperation extends BSTree
         }
         return SearchNode(c, root.left, root, val, level + 1) || SearchNode(c, root.right, root, val,  level + 1);
     }
+
+    public int LevelOfNode(int val)
+    {
+        TreeNode p = root;
+        return LevelOfNode(p, val, 1);
+    }
+
+    private int LevelOfNode(TreeNode root, int val, int level)
+    {
+        if(root == null)
+            return 0;
+
+        if(val == root.data)
+            return level;
+
+        int tLevel = LevelOfNode(root.left, val, level + 1);
+        if(tLevel != 0)
+            return tLevel;
+
+        tLevel = LevelOfNode(root.right, val, level + 1);
+
+        return tLevel;
+    } 
 }
 
 class Content

@@ -36,5 +36,10 @@ public class TreeDriver
        boolean isCousin =  bst.isCousin(13, 8);
 
        System.out.println(isCousin ? "YES!!, They are cousins" : "No:(, not cousins");
+
+       System.out.println("Level of node in tree = " + bst.LevelOfNode(13));
+       System.out.println("Level of node in tree = " + bst.LevelOfNode(10));
+       System.out.println("Level of node in tree = " + bst.LevelOfNode(11));
+
     }
 }
