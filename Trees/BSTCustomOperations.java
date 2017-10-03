@@ -80,6 +80,31 @@ class BSTCustomOperation extends BSTree
         tLevel = LevelOfNode(root.right, val, level + 1);
 
         return tLevel;
+    }
+
+    public void LeftViewOfTree()
+    {
+        TreeNode p = root;
+        LeftViewOfTree(p, 1);
+        System.out.println();
+    }
+
+    static int max_lvl = 0;
+    private void LeftViewOfTree(TreeNode curr, int lvl)
+    {
+        if(curr == null)
+        {
+            return;
+        }
+
+        if(max_lvl < lvl)
+        {
+            System.out.print(curr.data + ", ");
+            max_lvl = lvl;
+        }
+
+        LeftViewOfTree(curr.left, lvl + 1);
+        LeftViewOfTree(curr.right, lvl + 1);
     } 
 }
 

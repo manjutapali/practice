@@ -41,5 +41,8 @@ public class TreeDriver
        System.out.println("Level of node in tree = " + bst.LevelOfNode(10));
        System.out.println("Level of node in tree = " + bst.LevelOfNode(11));
 
+       System.out.println("Left view of Tree is : ");
+       bst.LeftViewOfTree();
+
     }
 }
