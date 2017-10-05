@@ -38,7 +38,9 @@ class LinkedList
 
     public void reverse()
     {
-        head = reverse(head, null);
+        //head = reverse(head, null);
+
+        head = reverseItr(head);
     }
 
     private Node reverse(Node curr, Node prev)
@@ -57,5 +59,21 @@ class LinkedList
         reverse(next, curr);
 
         return head;
+    }
+
+    private Node reverseItr(Node curr)
+    {   
+        Node prev = null;
+        Node next = null;
+
+        while(curr != null)
+        {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
     }
 }
