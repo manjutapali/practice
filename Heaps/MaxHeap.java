@@ -100,18 +100,14 @@ class Heap
         {
             int par = getParent(i);
 
-            if(heap[par] < heap[curr])
+            if(heap[par] < heap[i])
             {
-                int temp = heap[par];
-                heap[par] = heap[curr];
-                heap[curr] = temp;
+                swap(i, par);
+                i = par;
+                continue;
             }
-            else
-            {
-                return;
-            }
-
-            i = par;
+            
+            return;
         }
     }
 
