@@ -58,13 +58,6 @@ int main()
 }
 
 
-/*Please note that it's Function problem i.e.
-you need to write your solution in the form of Function(s) only.
-Driver Code to call/invoke your function is mentioned above.*/
-
-//User function Template for C++
-/*The function should return a string denoting the 
-order of the words in the Alien Dictionary */
 class Graph {
     
     int v;
@@ -136,8 +129,6 @@ int min(int x, int y) {
 string printOrder(string dict[], int N, int k)
 {
    Graph g(k);
-
-   cout << "This function" << endl;
    
    for(int i = 0; i < N-1; i++) {
        
