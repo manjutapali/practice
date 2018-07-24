@@ -47,7 +47,7 @@ class GFG {
 
 	        boolean flag = false;
 
-	        while(!((q.peek().x == -1) && (q.peek().y == -1)) {
+	        while(!((q.peek().x == -1) && (q.peek().y == -1))) {
 	            t = q.peek();
 
 	            if(isValid(t.i + 1, t.j) && m[t.i+1][t.j] == 1) {
