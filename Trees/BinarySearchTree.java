@@ -19,7 +19,7 @@ public class BinarySearchTree{
         b.PrintTreeDiameter();
         b.leftViewOftree();
         b.PrintPaths();
-        b.kthSmallElement(3);
+        System.out.println(b.ClosestNeighbour(68));
     }
 }
 
@@ -264,4 +264,30 @@ class BST{
         }
     }
 
+    public int ClosestNeighbour(int n) {
+        return ClosestNeighbour(root, n);
+    }
+
+    private int ClosestNeighbour(Node root, int n) {
+        
+        if (root == null)
+            return -1;
+
+        if (root.data == n) {
+            return root.data;
+        }
+
+        if (root.data > n) {
+            return ClosestNeighbour(root.left, n);
+        }
+        else{
+            
+            int t = ClosestNeighbour(root.right, n);
+            
+            if(t == -1)
+                return root.data;
+            else
+                return t;
+        }
+    }
 }
