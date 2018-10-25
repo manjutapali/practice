@@ -1,17 +1,17 @@
-class LinkedList
+class GenericLinkedList<E>
 {
-    protected Node head = null;
+	protected GenericNode<E> head = null;
 
-    public void add(int data)
+    public void add(E data)
     {
         head = add(head, data);
     }
 
-    private Node add(Node head, int data)
+    private GenericNode<E> add(GenericNode<E> head, E data)
     {
         if(head == null)
         {
-            return new Node(data);
+            return new GenericNode<E>(data);
         }
         else
         {
@@ -27,7 +27,7 @@ class LinkedList
         System.out.println(contents + "]");
     }
 
-    private Node display(Node head, StringBuffer contents)
+    private GenericNode<E> display(GenericNode<E> head, StringBuffer contents)
     {
         if(head == null)
           return head;
@@ -43,7 +43,7 @@ class LinkedList
         head = reverseItr(head);
     }
 
-    private Node reverse(Node curr, Node prev)
+    private GenericNode<E> reverse(GenericNode<E> curr, GenericNode<E> prev)
     {
         if(curr.next == null)
         {
@@ -53,7 +53,7 @@ class LinkedList
             return null;
         }
 
-        Node next = curr.next;
+       	GenericNode<E> next = curr.next;
         curr.next = prev;
 
         reverse(next, curr);
@@ -61,10 +61,10 @@ class LinkedList
         return head;
     }
 
-    private Node reverseItr(Node curr)
+    private GenericNode<E> reverseItr(GenericNode<E> curr)
     {   
-        Node prev = null;
-        Node next = null;
+        GenericNode<E> prev = null;
+        GenericNode<E> next = null;
 
         while(curr != null)
         {

@@ -1,0 +1,44 @@
+Given a linked list with two pointers - next, child.
+
+Flatten the linked list
+
+10 -> 5 -> 12 -> 7 -> 11
+|                |
+4 -> 20 -> 13    17
+     |     |
+     2 	   16
+           |
+           3
+  ans - 10,5,12,7,11,4,20,13,17,2,16,3
+
+  Loop over the list till end to print 'next' nodes first,
+  then check for the child nodes, if they have do same as the above.
+
+
+  function Flatter(Node head)
+  {
+  		Node curr = head;
+  		Node end = head;
+
+  		while(end.next != null)
+  			end = end.next;
+
+  		// end is pointing to the last node of next at first level.
+  		
+  		while(curr != end)
+  		{
+  			if(curr.child != null)
+  			{
+  				Node runnr = curr.child;
+
+  				end.next = curr.child;
+
+  				while(runnr.next != null)
+  					runnr = runnr.next;
+
+  				end = runnr;	
+  			}
+
+  			curr = curr.next;
+  		}	
+  }
