@@ -7,7 +7,7 @@ class ParallelStream {
 
     public static void main(String args[]) {
         List<Pair> pairs = Stream.generate(() -> new Pair(new Random().nextInt(1000), new Random().nextInt(500)))
-                .limit(1000).collect(Collectors.toList());
+                .limit(10000).collect(Collectors.toList());
 
         long t1, t2, count;
         t1 = System.currentTimeMillis();
